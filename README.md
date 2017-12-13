@@ -54,17 +54,19 @@ But I'm not an evil taskmaster. I bend.
 
 In keeping with a portable implementation, `deserialize` operates on vanilla Clojure strings.
 
-Contrary to the [Wikipedia][wiki] entry, BEncode is *not* bijectionable. List item order is undefined \[[1][theory]\] \[[2][btorg]\]. Beware comparing either serialized or deserialized values.
+Contrary to the [Wikipedia][wiki] entry, BEncode does *not* have the bijection property. List item order is undefined \[[1][theory]\] \[[2][btorg]\]. Beware comparing either serialized or deserialized values.
 
 ## Development
 
-The unit tests require NodeJS for the Clojurescript tests.
-
 The test suite is built in CLJC, and is run under both Clojure and Clojurescript.
 
+The Clojurescript unit tests require NodeJS to run. Otherwise only Leiningen is required.
+
 * `lein test` runs the tests under Clojure.
-* `lein cljs-test` runs the tests under Clojurescript and NodeJS
+* `lein cljs-test` runs the tests under Clojurescript and NodeJS.
 * `lein test-all` runs both Clojure and Clojurescript test suite.
+* `lein cljs-auto-test` automatically compiles and runs the Clojurescript tests on every change.
+* The Clojure REPL can run the unit tests as well by calling `(run-tests)` in the `bencode-cljc.core-test` namespace.
 
 ## License
 
