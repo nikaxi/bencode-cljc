@@ -16,11 +16,11 @@
    "cljs-auto-test" ["cljsbuild" "auto" "tests"]}
 
   :cljsbuild
-  {:test-commands {"unit-tests" ["nodejs" "target/unit-tests.js"]}
+  {:test-commands {"unit-tests" ["node" "target/unit-tests.js"]}
    :builds
    {:tests
     {:source-paths ["src" "test"]
-     :notify-command ["nodejs" "target/unit-tests.js"]
+     :notify-command ["node" "target/unit-tests.js"]
      :compiler {:output-to "target/unit-tests.js"
                 :optimizations :simple
                 :target :nodejs
