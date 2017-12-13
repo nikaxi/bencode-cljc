@@ -11,8 +11,8 @@
   :test-paths ["test"]
 
   :aliases
-  {"cljs-test" ["cljsbuild" "test" "unit-tests"]
-   "test-all" ["do" "clean," "test," "cljsbuild" "test" "unit-tests"]
+  {"cljs-test" ["do" "clean," "cljsbuild" "once" "tests"]
+   "test-all" ["do" "clean," "test," "cljsbuild" "once" "tests"]
    "cljs-auto-test" ["cljsbuild" "auto" "tests"]}
 
   :cljsbuild
@@ -22,9 +22,8 @@
     {:source-paths ["src" "test"]
      :notify-command ["node" "target/unit-tests.js"]
      :compiler {:output-to "target/unit-tests.js"
-                :optimizations :simple
+                :optimizations :none
                 :target :nodejs
-                :hashbang false
                 :main bencode-cljc.core-test}}
     :prod
     {:source-paths ["src"]
