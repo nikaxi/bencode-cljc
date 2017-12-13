@@ -58,7 +58,13 @@ Contrary to the [Wikipedia][wiki] entry, BEncode is *not* bijectionable. List it
 
 ## Development
 
-There's not much. A simple `lein test` will get you far.
+The unit tests require NodeJS for the Clojurescript tests.
+
+The test suite is built in CLJC, and is run under both Clojure and Clojurescript.
+
+* `lein test` runs the tests under Clojure.
+* `lein cljs-test` runs the tests under Clojurescript and NodeJS
+* `lein test-all` runs both Clojure and Clojurescript test suite.
 
 ## License
 

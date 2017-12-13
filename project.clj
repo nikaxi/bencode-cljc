@@ -12,19 +12,22 @@
 
   :aliases
   {"cljs-test" ["cljsbuild" "test" "unit-tests"]
-   "test-all" ["do" "clean," "test," "cljsbuild" "test" "unit-tests"]}
+   "test-all" ["do" "clean," "test," "cljsbuild" "test" "unit-tests"]
+   "cljs-auto-test" ["cljsbuild" "auto" "tests"]}
 
   :cljsbuild
   {:test-commands {"unit-tests" ["nodejs" "target/unit-tests.js"]}
    :builds
-   {:prod
-    {:source-paths ["src"]
-     :compiler {:output-to "target/bencode-cljc.js"
-                :output-dir "target/cljsbuild/main"
-                :optimizations :advanced}}
-    :tests
+   {:tests
     {:source-paths ["src" "test"]
+     :notify-command ["nodejs" "target/unit-tests.js"]
      :compiler {:output-to "target/unit-tests.js"
                 :optimizations :simple
                 :target :nodejs
-                :main bencode-cljc.core-test}}}})
+                :hashbang false
+                :main bencode-cljc.core-test}}
+    :prod
+    {:source-paths ["src"]
+     :compiler {:output-to "target/bencode-cljc.js"
+                :output-dir "target/cljsbuild/main"
+                :optimizations :advanced}}}})

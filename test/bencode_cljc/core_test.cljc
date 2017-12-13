@@ -1,6 +1,6 @@
 (ns bencode-cljc.core-test
   (:require
-    #?(:clj  [clojure.test :refer [is testing deftest]]
+    #?(:clj  [clojure.test :refer [is testing deftest run-tests]]
        :cljs [cljs.test :refer [is testing deftest run-tests]])
     [bencode-cljc.core :refer [serialize deserialize]]))
 
@@ -18,10 +18,13 @@
    [-5 "i-5e"]
    [1234567890 "i1234567890e"]
    [-1234567890 "i-1234567890e"]
-   [123456789012345678901234567890123456789012345678901234567890
+
+#?@(:clj
+; CLJS doesn't have support of large numbers. Beware!
+   [[123456789012345678901234567890123456789012345678901234567890
     "i123456789012345678901234567890123456789012345678901234567890e"]
    [-123456789012345678901234567890123456789012345678901234567890
-    "i-123456789012345678901234567890123456789012345678901234567890e"]
+    "i-123456789012345678901234567890123456789012345678901234567890e"]])
    ])
 
 (def list-test-pairs
@@ -94,10 +97,10 @@
 (def illegal-serialize-arguments
   [nil
 
-   5.0
-   -5.0
-   (list 5.0)
-   {"key" 5.0}
+   5.4
+   -5.4
+   (list 5.4)
+   {"key" 5.4}
 
    ; nil is not supported
    {nil 2}
@@ -106,7 +109,8 @@
    (list 1 2 3 nil)
    {nil "val"}
 
-   {1 2 3 4}
+   {1 2}
+   {3.3 4}
    {(list :key :omg!) "valid string"}
    {{:map :key? :thats :crazy!} "valid string"}
    {[:vector :as :key] "valid string"}
@@ -203,4 +207,5 @@
 #?(:cljs
    (do
      (enable-console-print!)
+     ; run-tests can be run in a Clojure REPL as well.
      (run-tests)))
