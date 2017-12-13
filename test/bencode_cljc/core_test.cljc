@@ -19,8 +19,13 @@
    [1234567890 "i1234567890e"]
    [-1234567890 "i-1234567890e"]
 
+   ; Javascript Number/MAX_SAFE_INTEGER
+   [9007199254740991 "i9007199254740991e"]
+   ; Javascript Number/MIN_SAFE_INTEGER
+   [-9007199254740991 "i-9007199254740991e"]
+
 #?@(:clj
-; CLJS doesn't have support of large numbers. Beware!
+; CLJS doesn't support very large numbers. Beware!
    [[123456789012345678901234567890123456789012345678901234567890
     "i123456789012345678901234567890123456789012345678901234567890e"]
    [-123456789012345678901234567890123456789012345678901234567890
@@ -103,6 +108,12 @@
    -5.4
    (list 5.4)
    {"key" 5.4}
+   {"good-val" "string" "key-bad-val" 5.4}
+   {"key-bad-val" 5.4 "good-val" "string"}
+#?@(:cljs
+; The MAX_VALUE and MIN_VALUE Numbers in Javascript are floating point values
+   [(.-MAX_VALUE js/Number)
+    (.-MIN_VALUE js/Number)])
 
    ; nil is not supported
    {nil 2}
