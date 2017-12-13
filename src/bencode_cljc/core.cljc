@@ -10,13 +10,15 @@
 (declare serialize)
 
 (defn- map-reducer-fn [s [key val]]
-  (when (or (string? key) (keyword? key))
-    (when-let [serialized-val (serialize val)]
-      (str s (serialize (name key)) serialized-val))))
+  (when s
+    (when-let [sk (serialize key)]
+      (when-let [sv (serialize val)]
+        (str s sk sv)))))
 
 (defn- serialize-map [m]
-  (when-let [serial (reduce map-reducer-fn "" (into (sorted-map) m))]
-    (str "d" serial "e")))
+  (when (every? (some-fn string? keyword?) (keys m))
+    (when-let [serial (reduce map-reducer-fn "" (into (sorted-map) m))]
+      (str "d" serial "e"))))
 
 (defn- serialize-list [coll]
   (let [serialized-list (map serialize coll)]

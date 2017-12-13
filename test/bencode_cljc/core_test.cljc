@@ -94,6 +94,8 @@
    [{:first "first" :2ace "second" :3ace "third"} "d4:2ace6:second4:3ace5:third5:first5:firste"]
    ])
 
+(def sym nil)
+
 (def illegal-serialize-arguments
   [nil
 
@@ -107,13 +109,22 @@
    {"key" nil}
    (list nil)
    (list 1 2 3 nil)
-   {nil "val"}
+   {"valid" "val" nil "val"}
+
+   ; Symbols not supported
+   {'sym 2}
+   {"key" 'sym}
+   (list 'sym)
+   (list 1 2 3 'sym)
+   {"valid" "val" 'sym "val"}
 
    {1 2}
    {3.3 4}
    {(list :key :omg!) "valid string"}
    {{:map :key? :thats :crazy!} "valid string"}
    {[:vector :as :key] "valid string"}
+   {"valid" "val" (list :bad :key :last) "val"}
+   {"valid" "val" {:map :key? :thats :crazy!} "val"}
    ])
 
 (def illegal-deserialize-arguments
