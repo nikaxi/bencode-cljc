@@ -72,7 +72,7 @@ The Clojurescript unit tests require NodeJS to run. Otherwise only Leiningen is 
 
 Copyright © 2017 James Leonis
 
-Distributed under the GPLv3 license.
+Distributed under the EPLv2 license. See LICENSE file.
 
 [wiki]: https://en.wikipedia.org/wiki/Bencode#Features_&_drawbacks
 [theory]: https://wiki.theory.org/index.php/BitTorrentSpecification#Bencoding
