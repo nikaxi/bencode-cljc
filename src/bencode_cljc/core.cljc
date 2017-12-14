@@ -68,17 +68,13 @@
     (when (even? (count map-list))
       (vector (apply hash-map map-list) rest))))
 
-(def ^:private
-  numeric-set
-  (set (map char (range 48 58))))
-
 (defn- deserialize-next
   [encoded]
-  (condp #(%1 %2) (first (seq encoded))
-    numeric-set (deserialize-string encoded)
-    #{\i} (deserialize-int encoded)
-    #{\l} (deserialize-list encoded)
-    #{\d} (deserialize-map encoded)
+  (case (first (seq encoded))
+    (\0 \1 \2 \3 \4 \5 \6 \7 \8 \9) (deserialize-string encoded)
+    \i (deserialize-int encoded)
+    \l (deserialize-list encoded)
+    \d (deserialize-map encoded)
     nil))
 
 (defn ^{:export true}
