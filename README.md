@@ -11,11 +11,13 @@ A functional Clojure(script) BEncode serialization library.
 
 ## Usage
 
+[![Clojars Project](https://img.shields.io/clojars/v/com.jamesleonis/bencode-cljc.svg)](https://clojars.org/com.jamesleonis/bencode-cljc)
+
 ### Quickstart
 
 ```clojure
 (ns your.awesome.app
-  (:require [bencode-cljc :refer [serialize deserialize]]))
+  (:require [bencode-cljc.core :refer [serialize deserialize]]))
 
 (def out (serialize {"spam" (list "a" "b")})
 ; => "d4:spaml1:a1:bee"

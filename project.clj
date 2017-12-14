@@ -1,4 +1,4 @@
-(defproject com.jamesleonis/bencode-cljc "0.1.0-SNAPSHOT"
+(defproject com.jamesleonis/bencode-cljc "0.1.1-SNAPSHOT"
   :description "A functional Clojure(script) BEncode serialization library."
   :url "https://github.com/jamesleonis/bencode-cljc"
   :license {:name "Eclipse Public License - v 2.0"
