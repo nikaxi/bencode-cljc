@@ -231,3 +231,8 @@
      (enable-console-print!)
      ; run-tests can be run in a Clojure REPL as well.
      (run-tests)))
+
+(comment
+  (time (dotimes [_ 100000000] (map (comp serialize first) mixed-use-pairs)))
+  (time (dotimes [_ 100000000] (map (comp deserialize second) mixed-use-pairs)))
+  )
