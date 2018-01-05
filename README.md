@@ -5,7 +5,7 @@
 
 A functional Clojure(script) BEncode serialization library.
 
-`[org.jamesleonis/bencode-cljc "0.1.2-SNAPSHOT"]`
+`[org.jamesleonis/bencode-cljc "0.1.2"]`
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.jamesleonis/bencode-cljc.svg)](https://clojars.org/com.jamesleonis/bencode-cljc)
 
