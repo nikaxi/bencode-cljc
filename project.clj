@@ -1,4 +1,4 @@
-(defproject com.jamesleonis/bencode-cljc "0.1.1"
+(defproject com.jamesleonis/bencode-cljc "0.1.2-SNAPSHOT"
   :description "A functional Clojure(script) BEncode serialization library."
   :url "https://github.com/jamesleonis/bencode-cljc"
   :license {:name "Eclipse Public License - v 2.0"
@@ -14,7 +14,7 @@
 
   :aliases
   {"cljs-test" ["do" "clean," "cljsbuild" "once" "tests"]
-   "test-all" ["do" "clean," "test," "cljsbuild" "once" "tests"]
+   "test-all" ["do" "clean," "cljsbuild" "once" "tests," "test"]
    "cljs-auto-test" ["cljsbuild" "auto" "tests"]}
 
   :cljsbuild

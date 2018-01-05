@@ -5,17 +5,15 @@
 
 A functional Clojure(script) BEncode serialization library.
 
+`[org.jamesleonis/bencode-cljc "0.1.2-SNAPSHOT"]`
+
+[![Clojars Project](https://img.shields.io/clojars/v/com.jamesleonis/bencode-cljc.svg)](https://clojars.org/com.jamesleonis/bencode-cljc)
+
 ## Why?
 
 `bencode-cljc` aims to be a portable implementation of the BEncode spec, to boldly go wherever Clojure goes.
 
 ## Usage
-
-`[org.jamesleonis/bencode-cljc "0.1.1"]`
-
-[![Clojars Project](https://img.shields.io/clojars/v/com.jamesleonis/bencode-cljc.svg)](https://clojars.org/com.jamesleonis/bencode-cljc)
-
-### Quickstart
 
 ```clojure
 (ns your.awesome.app
