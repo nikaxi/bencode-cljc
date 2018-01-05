@@ -180,6 +180,12 @@
    "d10:helloi123456789ee"
    "d5:helloi123456789e5:helloe"
    "d5:hello5:worldei10e"
+   "di10e5:hello5:worldi10ee"
+   "d5:worldi10ei10e5:helloe"
+   "dle5:hello5:worldi10ee"
+   "dli10ei11ee5:hello5:worldi10ee"
+   "dde5:hello5:worldi10ee"
+   "dd8:innermapi11ee5:hello5:worldi10ee"
    ])
 
 (defn- run-test-on-pair

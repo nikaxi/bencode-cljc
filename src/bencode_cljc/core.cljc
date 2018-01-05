@@ -65,7 +65,8 @@
 
 (defn- deserialize-map [s]
   (when-let [[map-list rest] (deserialize-list s)]
-    (when (even? (count map-list))
+    (when (and (even? (count map-list))
+               (every? (comp string? first) (partition 2 map-list)))
       (vector (apply hash-map map-list) rest))))
 
 (defn- deserialize-next
@@ -108,6 +109,8 @@
         parsed))))
 
 (comment
+
+  (every? (comp string? first) (partition 2 [10 "hello" "goodbye" "world"]))
 
   (let
     [f (partial re-find #"i((?:-?[1-9]{1}[0-9]*)|(?:0))e")
