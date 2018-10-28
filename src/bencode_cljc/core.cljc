@@ -47,12 +47,13 @@
       (string/join (drop (count found) s)))))
 
 (defn- deserialize-string [s]
-  (when-let [[_ size-str string-shard] (re-find #"(\d+):(.*)" s)]
+  (when-let [[size-shard size-str] (re-find #"(\d+):" s)]
     (when-let [size (parse-int size-str)]
-      (when-not (< (count string-shard) size)
-        (vector
-          (subs string-shard 0 size)
-          (string/join (drop (+ 1 size (count size-str)) s)))))))
+      (let [[string leftover] (split-at size (drop (count size-shard) s))]
+        (when (= (count string) size)
+          (vector
+            (string/join string)
+            (string/join leftover)))))))
 
 (defn- deserialize-list [s]
   (loop [leftover (string/join (next s))
@@ -107,3 +108,9 @@
     (let [[parsed rest] (deserialize-next bencoded-str)]
       (when (string/blank? rest)
         parsed))))
+
+(comment
+  (deserialize (slurp "./resources/ubuntu.torrent" :encoding "US-ASCII"))
+  (deserialize (slurp "./resources/debian.torrent" :encoding "US-ASCII"))
+  (deserialize-string (string/join (next (slurp "./resources/ubuntu.torrent" :encoding "US-ASCII"))))
+  (deserialize-next (slurp "./resources/ubuntu.torrent")))

@@ -232,6 +232,21 @@
     (testing (str "Bad Input: " arg)
       (is (nil? (deserialize arg))))))
 
+(defn test-slurp [path]
+  #?(:clj
+     (slurp path :encoding "US-ASCII")
+     :cljs
+     (let [fs (js/require "fs")]
+       (.readFileSync fs path "ascii"))))
+
+(deftest check-against-real-torrent-files
+  (doseq [[piece-len num-pieces file]
+          [[23280 305135616 "resources/debian.torrent"]
+           [76280 1999503360 "resources/ubuntu.torrent"]]]
+    (let [_file (deserialize (test-slurp file))]
+      (is (= num-pieces (get-in _file ["info" "length"])))
+      (is (= piece-len (count (get-in _file ["info" "pieces"])))))))
+
 #?(:cljs
    (do
      (enable-console-print!)
